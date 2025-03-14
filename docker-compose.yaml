@@ -1,0 +1,11 @@
+services:
+  mcp-sse-server:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - MCP_TRANSPORT=sse
