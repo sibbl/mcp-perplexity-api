@@ -4,6 +4,25 @@
 
 This repository contains the code for the Model Context Protocol (MCP) Perplexity Server, which is a server that provides an API to ask a question to a model behind the Perplexity API.
 
+## Quickstart via Portainer or Docker Compose
+
+Use the following `docker-compose.yml` to quickly set up the server via Portainer (as a stack) or Docker Compose:
+
+```yaml
+services:
+  mcp-sse-server:
+    image: ghcr.io/sibbl/mcp-perplexity-api:main
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - MCP_TRANSPORT=sse
+      - MCP_PERPLEXITY_API_KEY=ENTER_YOUR_PERPLEXITY_API_KEY
+      # - MCP_SSE_AUTH_HEADER_VALUE=Bearer some_token_which_is_required # enables optional bearer authentication against the MCP server with hard coded value
+```
+
+Save it for Docker compose in a new directory and run `docker compose up` in it. `http://localhost:8080/sse` is your endpoint.
+
 ## Prerequisites
 
 * Nodejs
